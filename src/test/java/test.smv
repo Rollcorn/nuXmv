@@ -1,0 +1,22 @@
+MODULE main
+IVAR
+d:Real;
+VAR
+state:{s0, s1};
+res:Real;
+ASSIGN
+init ( state ) := s0;
+next ( stat e ) := case
+state = s0 & res >= 0.10 : s1;
+state = s1 & res >= 0.20 : s0;
+TRUE:state;
+esac;
+next(t) := case
+
+TRUE: 0.0;
+esac;
+INIT
+res >= 0.0
+TRANS
+
+INVARSPEC res <= 0.3;

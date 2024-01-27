@@ -1,0 +1,40 @@
+<program> ::= <module>+{
+  parserUtilClass="generated.NuXmvParserUtil"
+}
+
+<module> ::= MODULE <identifier> (<parameters>)
+            <definitions>
+            <variables>
+            <assignments>
+            <invariants>
+
+<parameters> ::= <parameter>*
+
+<parameter> ::= <identifier>
+
+<definitions> ::= DEFINE <definition>*
+
+<definition> ::= <identifier> ':=' <expression>
+
+<variables> ::= VAR <variable>*
+
+<variable> ::= <identifier> : <type>
+
+<assignments> ::= ASSIGN <assignment>*
+
+<assignment> ::= <identifier> := <expression>
+
+<invariants> ::= INVAR <invariant>*
+
+<invariant> ::= <expression>
+
+<expression> ::= <term> <operator> <term>
+              | <term>
+
+<term> ::= <identifier>
+         | <constant>
+         | (<expression>)
+
+<operator> ::= == | != | && | || | < | > | <= | >=
+
+<type> ::= boolean | integer | real

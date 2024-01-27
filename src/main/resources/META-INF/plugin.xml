@@ -1,0 +1,41 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>com.shkanduik.nuxmv.nuXmv</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>NuXmv</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">ITMO</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Support for Nuxmv language. highlight sintax.
+  ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType
+                name="NuXmv File"
+                implementationClass="org.shkandyuk.nuxmv.NuXmvFileType"
+                fieldName="INSTANCE"
+                language="NuXmv"
+                extensions="smv"
+        />
+        <syntaxHighlighter language="NuXmv" implementationClass="org.shkandyuk.nuxmv.NuXmvSyntaxHighlighter"/>
+
+        <!--        <lang.parserDefinition language="Simple" implementationClass="org.intellij.sdk.language.SimpleParserDefinition"/>-->
+<!--        <lang.syntaxHighlighterFactory language="Simple"-->
+<!--                                       implementationClass="org.intellij.sdk.language.SimpleSyntaxHighlighterFactory"/>-->
+<!--        <iconProvider implementation="org.shkandyuk.nuxmv.NuXmvIcons"/>-->
+    </extensions>
+</idea-plugin>
