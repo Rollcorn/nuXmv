@@ -2,39 +2,37 @@
   parserUtilClass="generated.NuXmvParserUtil"
 }
 
-<module> ::= MODULE <identifier> (<parameters>)
-            <definitions>
-            <variables>
-            <assignments>
-            <invariants>
+<module> ::= "MODULE" <ID> <ivar>* <var>* <assign>* <init>* <trans>* <invarspec>*
 
-<parameters> ::= <parameter>*
+<ivar> ::= "IVAR" <ID> ":" <type> ";"
+<var> ::= "VAR" <ID> ":" <type> ";"
+<assign> ::= "ASSIGN" <assignList>
+<init> ::= "INIT" "(" <expr> ")"
+<trans> ::= "TRANS" "(" <expr> ")"
+<invarspec> ::= "INVAR" "(" <expr> ")"
 
-<parameter> ::= <identifier>
+<assignList> ::= (<initAssign> | <nextAssign>)+
+<initAssign> ::= "init" "(" <ID> ")" ":=" <expr> ";"
+<nextAssign> ::= "next" "(" <ID> ")" ":=" <expr> ";"
 
-<definitions> ::= DEFINE <definition>*
+<condition> ::= "case" <condExpr>* "esac"
+<condExpr> ::= <expr> ":" <expr> ";"
+<expr> ::= <orExpr>
+<orExpr> ::= <andExpr> ("|" <andExpr>)*
+<andExpr> ::= <equalityExpr> ("&" <equalityExpr>)*
+<equalityExpr> ::= <relationalExpr> (("=" | "!=") <relationalExpr>)*
+<relationalExpr> ::= <additiveExpr> (("<" | "<=" | ">" | ">=") <additiveExpr>)*
+<additiveExpr> ::= <multiplicativeExpr> (("+" | "-") <multiplicativeExpr>)*
+<multiplicativeExpr> ::= <unaryExpr> (("*" | "/") <unaryExpr>)*
+<unaryExpr> ::= ("!" | "X" | "G" | "F" | "U" | "~") <unaryExpr> | <primaryExpr>
+<primaryExpr> ::= <ID> | <NUMBER> | <BOOLEAN> | <STRING> | "TRUE" | "FALSE" | "(" <expr> ")"
 
-<definition> ::= <identifier> ':=' <expression>
+<type> ::= "Real" | "{" <valueList> "}"
+<valueList> ::= <expr> ("," <expr>)*
 
-<variables> ::= VAR <variable>*
-
-<variable> ::= <identifier> : <type>
-
-<assignments> ::= ASSIGN <assignment>*
-
-<assignment> ::= <identifier> := <expression>
-
-<invariants> ::= INVAR <invariant>*
-
-<invariant> ::= <expression>
-
-<expression> ::= <term> <operator> <term>
-              | <term>
-
-<term> ::= <identifier>
-         | <constant>
-         | (<expression>)
-
-<operator> ::= == | != | && | || | < | > | <= | >=
-
-<type> ::= boolean | integer | real
+<ID> ::= "$[a-zA-Z_][a-zA-Z_0-9]*"
+<NUMBER> ::= "0-9"+('.'"0-9+")?
+<BOOLEAN> ::= "true" | "false"
+<STRING> ::= '"' <CHARACTERS>* '"'
+<CHARACTERS> ::= <CHARACTER> | <CHARACTERS> <CHARACTER>
+<CHARACTER> ::= "a-z" | "A-Z" | "0-9"

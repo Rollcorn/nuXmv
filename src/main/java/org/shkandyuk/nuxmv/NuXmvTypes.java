@@ -1,4 +1,4 @@
-package org.shkandyuk.nuxmv;
+/*package org.shkandyuk.nuxmv;
 
 import com.intellij.psi.tree.IElementType;
 import org.shkandyuk.nuxmv.grammar.psi.NuXmvTokenType;
@@ -10,4 +10,4 @@ public interface NuXmvTypes {
     IElementType STRING = new NuXmvTokenType("STRING");
     IElementType BAD_CHARACTER = new NuXmvTokenType("BAD_CHARACTER");
     IElementType IDENTIFIER = new NuXmvTokenType("IDENTIFIER");
-}
+}*/

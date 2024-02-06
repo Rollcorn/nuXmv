@@ -1,4 +1,4 @@
-package org.shkandyuk.nuxmv.grammar.psi;
+/*package org.shkandyuk.nuxmv.grammar.psi;
 
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
@@ -15,3 +15,4 @@ public class NuXmvTokenType  extends IElementType {
         return "NuXmvTokenType." + super.toString();
     }
 }
+*/

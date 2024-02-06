@@ -1,13 +1,13 @@
 package org.shkandyuk.nuxmv.grammar.parser;
 
-// Generated from NuXmv.g4 by ANTLR 4.13.1
+// Generated from /home/denis/Documents/5_ITMO/NIR/nuXmv/NuXmvParser.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
  * This interface defines a complete listener for a parse tree produced by
  * {@link NuXmvParser}.
  */
-public interface NuXmvListener extends ParseTreeListener {
+public interface NuXmvParserListener extends ParseTreeListener {
 	/**
 	 * Enter a parse tree produced by {@link NuXmvParser#module}.
 	 * @param ctx the parse tree

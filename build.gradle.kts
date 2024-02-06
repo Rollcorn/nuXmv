@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.8.21"
-    id("org.jetbrains.intellij") version "1.13.3"
+    id("org.jetbrains.intellij") version "1.17.1"
     id("org.jetbrains.grammarkit") version "2022.3.2"
     antlr
 }
@@ -25,7 +25,7 @@ intellij {
 
 dependencies {
 //    implementation(libs.annotations)
-//    antlr("org.antlr:antlr4:4.13.1")
+    antlr("org.antlr:antlr4:4.13.1")
 //    implementation("org.antlr:antlr4-intellij-adaptor:0.1")
 //    compile("org.antlr:antlr4-intellij-adaptor:0.1")
 //    implementation("org.antlr:antlr4-runtime:4.12.0") // используйте актуальную версию

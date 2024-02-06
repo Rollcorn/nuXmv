@@ -2,19 +2,20 @@
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.shkanduik.nuxmv.nuXmv</id>
+    <version>0.0.1</version>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>NuXmv</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">ITMO</vendor>
+    <vendor email="dnsshkdk@gmail.com" url="https://github.com/Rollcorn/nuXmv">rollcorn</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Support for Nuxmv language. highlight sintax.
+    Support for Nuxmv language. highlight syntax.
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -31,7 +32,14 @@
                 language="NuXmv"
                 extensions="smv"
         />
-        <syntaxHighlighter language="NuXmv" implementationClass="org.shkandyuk.nuxmv.NuXmvSyntaxHighlighter"/>
+        <lang.parserDefinition
+                language="NuXmv"
+                implementationClass="org.shkandyuk.nuxmv.NuXmvParserDefinition"/>
+        <syntaxHighlighter
+                language="NuXmv"
+                implementationClass="org.shkandyuk.nuxmv.highlight.NuXmvSyntaxHighlighterFactory"/>
+        <colorSettingsPage
+                implementation="org.shkandyuk.nuxmv.highlight.NuXmvColorSettingsPage"/>
 
         <!--        <lang.parserDefinition language="Simple" implementationClass="org.intellij.sdk.language.SimpleParserDefinition"/>-->
 <!--        <lang.syntaxHighlighterFactory language="Simple"-->

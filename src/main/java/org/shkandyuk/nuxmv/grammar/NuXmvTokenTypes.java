@@ -1,4 +1,4 @@
-package org.shkandyuk.nuxmv.grammar;
+/*package org.shkandyuk.nuxmv.grammar;
 
 
 import com.intellij.psi.tree.IElementType;
@@ -28,3 +28,4 @@ public interface NuXmvTokenTypes {
     }
 }
 
+*/

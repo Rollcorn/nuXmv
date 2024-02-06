@@ -1,4 +1,4 @@
-package org.shkandyuk.nuxmv.grammar.parser;
+/*package org.shkandyuk.nuxmv.grammar.parser;
 
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.LexerPosition;
@@ -81,3 +81,4 @@ public class NuXmvLexerAdapter extends Lexer {
         };
     }
 }
+*/
