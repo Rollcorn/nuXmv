@@ -23,8 +23,8 @@ import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvLexer;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvParser;
+import org.shkandyuk.nuxmv.grammar.parser.xmvLexer;
+import org.shkandyuk.nuxmv.grammar.parser.xmvParser;
 import org.shkandyuk.nuxmv.grammar.psi.NuXmvPSIFileRoot;
 import org.shkandyuk.nuxmv.grammar.psi.PsiElementFactory;
 
@@ -42,43 +42,41 @@ public class NuXmvParserDefinition implements ParserDefinition {
 
     static {
         PSIElementTypeFactory.defineLanguageIElementTypes(NuXmvLanguage.INSTANCE,
-                NuXmvParser.tokenNames, NuXmvParser.ruleNames);
+                xmvParser.tokenNames, xmvParser.ruleNames);
         tokens = PSIElementTypeFactory.getTokenIElementTypes(NuXmvLanguage.INSTANCE);
         rules = PSIElementTypeFactory.getRuleIElementTypes(NuXmvLanguage.INSTANCE);
     }
 
-    public static final TokenSet COMMENTS =
-            PSIElementTypeFactory.createTokenSet(
-                    NuXmvLanguage.INSTANCE,
-                    NuXmvLexer.COMMENT,
-                    NuXmvLexer.LINE_COMMENT);
+//    public static final TokenSet COMMENTS = PSIElementTypeFactory.createTokenSet(
+//            NuXmvLanguage.INSTANCE,
+//            xmvLexer.COMMENT,
+//            xmvLexer.LINE_COMMENT);
 
     public static final TokenSet WHITESPACE =
             PSIElementTypeFactory.createTokenSet(
                     NuXmvLanguage.INSTANCE,
-                    NuXmvLexer.WS);
+                    xmvLexer.WS);
 
-    public static final TokenSet STRING =
-            PSIElementTypeFactory.createTokenSet(
-                    NuXmvLanguage.INSTANCE,
-                    NuXmvLexer.STRING);
+//    public static final TokenSet STRING = PSIElementTypeFactory.createTokenSet(
+//            NuXmvLanguage.INSTANCE,
+//            xmvLexer.STRING);
 
     @NotNull
     @Override
     public Lexer createLexer(Project project) {
-        NuXmvLexer lexer = new NuXmvLexer(null);
+        xmvLexer lexer = new xmvLexer(null);
         return new ANTLRLexerAdaptor(NuXmvLanguage.INSTANCE, lexer);
     }
 
     @NotNull
     public PsiParser createParser(final Project project) {
-        final NuXmvParser parser = new NuXmvParser(null);
+        final xmvParser parser = new xmvParser(null);
         return new ANTLRParserAdaptor(NuXmvLanguage.INSTANCE, parser) {
             @Override
             protected ParseTree parse(Parser parser, IElementType root) {
                 // start rule depends on root passed in; sometimes we want to create an ID node etc...
                 if (root instanceof IFileElementType) {
-                    return ((NuXmvParser) parser).module();
+                    return ((xmvParser) parser).module();
                 }
                 // let's hope it's an ID as needed by "rename function"
                 throw new IllegalStateException("Unexpected root element " + root);
