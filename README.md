@@ -1,8 +1,8 @@
 # NuXmv Support Plugin
 
-![Build](https://github.com/kechinvv/LibSLPluginIJ/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/23222-libsl-support.svg)](https://plugins.jetbrains.com/plugin/23222-libsl-support)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/23222-libsl-support.svg)](https://plugins.jetbrains.com/plugin/23222-libsl-support)
+![Build](https://nuxmv.fbk.eu/theme/NuXMV.png)
+[![Version]()]()
+[![Downloads]()]()
 
 ## ToDo list
 ### Project structure
