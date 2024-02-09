@@ -2,14 +2,14 @@
 <idea-plugin>
     <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
     <id>com.shkanduik.nuxmv.nuXmv</id>
+    <name>NuXmv</name>
+    <vendor email="dnsshkdk@gmail.com" url="https://github.com/Rollcorn/nuXmv">rollcorn</vendor>
     <version>0.0.1</version>
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>NuXmv</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="dnsshkdk@gmail.com" url="https://github.com/Rollcorn/nuXmv">rollcorn</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
@@ -20,7 +20,11 @@
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.java</depends>
     <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.MyBundle</resource-bundle>
+
 
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
@@ -30,20 +34,20 @@
                 implementationClass="org.shkandyuk.nuxmv.NuXmvFileType"
                 fieldName="INSTANCE"
                 language="NuXmv"
-                extensions="smv"
+                extensions="xmv"
         />
         <lang.parserDefinition
                 language="NuXmv"
                 implementationClass="org.shkandyuk.nuxmv.NuXmvParserDefinition"/>
-        <syntaxHighlighter
+        <lang.syntaxHighlighterFactory
                 language="NuXmv"
                 implementationClass="org.shkandyuk.nuxmv.highlight.NuXmvSyntaxHighlighterFactory"/>
         <colorSettingsPage
                 implementation="org.shkandyuk.nuxmv.highlight.NuXmvColorSettingsPage"/>
-
-        <!--        <lang.parserDefinition language="Simple" implementationClass="org.intellij.sdk.language.SimpleParserDefinition"/>-->
-<!--        <lang.syntaxHighlighterFactory language="Simple"-->
-<!--                                       implementationClass="org.intellij.sdk.language.SimpleSyntaxHighlighterFactory"/>-->
-<!--        <iconProvider implementation="org.shkandyuk.nuxmv.NuXmvIcons"/>-->
+        <lang.braceMatcher
+                language="NuXmv"
+                implementationClass="org.shkandyuk.nuxmv.highlight.NuXmvBraceMatcher"/>
     </extensions>
+
+
 </idea-plugin>

@@ -10,7 +10,7 @@ public class NuXmvFileType extends LanguageFileType {
     public static final NuXmvFileType INSTANCE = new NuXmvFileType();
 
     private NuXmvFileType() {
-        super(NuXmvLanguage.INSTANCE);
+        super(NuXmv.INSTANCE);
     }
 
     @NotNull
@@ -28,7 +28,7 @@ public class NuXmvFileType extends LanguageFileType {
     @NotNull
     @Override
     public String getDefaultExtension() {
-        return "NuXmv";
+        return "xmv";
     }
 
     @Nullable

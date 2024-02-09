@@ -1,0 +1,89 @@
+--
+-- Shuttle Digital Autopilot
+--         by Sergey Berezin (berez@cs.cmu.edu)
+--
+MODULE cont_3eo_mode_select(start,smode5,vel,q_bar,apogee_alt_LT_alt_ref,
+                         h_dot_LT_hdot_reg2,alpha_n_GRT_alpha_reg2,
+                         delta_r_GRT_del_r_usp,v_horiz_dnrng_LT_0,
+                         high_rate_sep,meco_confirmed)
+
+VAR cont_3EO_start: boolean;
+    RTLS_abort_declared: boolean;
+    region_selected : boolean;
+    m_mode: {mm102, mm103, mm601};
+    r: {reg-1, reg0, reg1, reg2, reg3, reg102};
+    step : {1,2,3,4,5,6,7,8,9,10, exit, undef};
+
+ASSIGN
+ init(cont_3EO_start) := FALSE;
+ init(m_mode) := {mm102, mm103};
+ init(region_selected) := FALSE;
+ init(RTLS_abort_declared) := FALSE;
+ init(r) := reg-1;
+ init(step) := undef;
+
+ next(step) :=
+   case
+     step = 1 & m_mode = mm102 : exit;
+     step = 1 : 2;
+     step = 2 & smode5 : 5;
+     step = 2 & vel = GRT_vi_3eo_max: exit;
+     step = 2 : 3;
+     step = 3 & vel = LEQ_vi_3eo_min : 6;
+     step = 3 : 4;
+     step = 4 & apogee_alt_LT_alt_ref: exit;
+     step = 4 : 6;
+     step = 5 : 6;
+     step = 6 & r = reg0 : exit;
+     step = 6 : 7;
+     step = 7 : 8;
+     step = 8 & q_bar = GRT_qbar_reg3 & !high_rate_sep : 10;
+     step = 8 : 9;
+     step = 9 : 10;
+     step = 10: exit;
+     next(start): 1;
+     step = exit : undef;
+     TRUE: step;
+   esac;
+
+ next(cont_3EO_start) :=
+   case
+     step = 1 & m_mode = mm102 : TRUE;
+     step = 10 & meco_confirmed : TRUE;
+     TRUE : cont_3EO_start;
+   esac;
+
+ next(r) :=
+   case
+     step = 1 & m_mode = mm102 : reg102;
+     step = 2 & !smode5 & vel = GRT_vi_3eo_max: reg0;
+     step = 4 & apogee_alt_LT_alt_ref: reg0;
+     step = 5 & v_horiz_dnrng_LT_0 & delta_r_GRT_del_r_usp : reg0;
+     step = 8 & q_bar = GRT_qbar_reg3 & !high_rate_sep : reg3;
+     step = 9: case
+                 (h_dot_LT_hdot_reg2 & alpha_n_GRT_alpha_reg2 &
+                  q_bar = GRT_qbar_reg1) | high_rate_sep :     reg2;
+                 TRUE : reg1;
+               esac;
+     next(step) = 1 : reg-1;
+     TRUE: r;
+   esac;
+
+ next(RTLS_abort_declared) :=
+   case
+     step = 10 & meco_confirmed & m_mode = mm103 : TRUE;
+     TRUE: RTLS_abort_declared;
+   esac;
+
+ next(m_mode) :=
+   case
+     step = 10 & meco_confirmed & m_mode = mm103 : mm601;
+     TRUE: m_mode;
+   esac;
+
+ next(region_selected) :=
+   case
+     next(step) = 1 : FALSE;
+     next(step) = exit : TRUE;
+     TRUE : region_selected;
+   esac;

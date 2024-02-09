@@ -17,10 +17,11 @@ import java.util.Map;
 public class NuXmvColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-            new AttributesDescriptor("Identifier", NuXmvSyntaxHighlighter.ID),
-            new AttributesDescriptor("Keyword", NuXmvSyntaxHighlighter.KEYWORD),
-            new AttributesDescriptor("String", NuXmvSyntaxHighlighter.STRING),
-            new AttributesDescriptor("Number", NuXmvSyntaxHighlighter.NUMBER),
+            new AttributesDescriptor("Identifiers", NuXmvSyntaxHighlighter.ID),
+            new AttributesDescriptor("Keywords", NuXmvSyntaxHighlighter.KEYWORD),
+            new AttributesDescriptor("Brackets", NuXmvSyntaxHighlighter.BRACKETS),
+            new AttributesDescriptor("Operations", NuXmvSyntaxHighlighter.OPERATION),
+            new AttributesDescriptor("Comments", NuXmvSyntaxHighlighter.COMMENT),
     };
 
     @Override
@@ -64,8 +65,9 @@ public class NuXmvColorSettingsPage implements ColorSettingsPage {
         return ColorDescriptor.EMPTY_ARRAY;
     }
 
+    @NotNull
     @Override
-    public @NotNull @NlsContexts.ConfigurableName String getDisplayName() {
+    public  String getDisplayName() {
         return "NuXmv";
     }
 }

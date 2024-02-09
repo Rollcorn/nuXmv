@@ -2,11 +2,10 @@ package org.shkandyuk.nuxmv.grammar.psi.rules;
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 
-public class NuXmvInvarspec extends ASTWrapperPsiElement {
-    public NuXmvInvarspec(@NotNull ASTNode node) {
+public class NuXmvValDeclaration extends ASTWrapperPsiElement {
+    public NuXmvValDeclaration(@NotNull ASTNode node) {
         super(node);
     }
 }

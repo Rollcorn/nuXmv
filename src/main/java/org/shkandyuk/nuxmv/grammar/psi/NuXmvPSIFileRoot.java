@@ -5,12 +5,12 @@ import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
 import org.jetbrains.annotations.NotNull;
 import org.shkandyuk.nuxmv.NuXmvFileType;
-import org.shkandyuk.nuxmv.NuXmvLanguage;
+import org.shkandyuk.nuxmv.NuXmv;
 
 public class NuXmvPSIFileRoot extends PsiFileBase {
 
     public NuXmvPSIFileRoot(@NotNull FileViewProvider viewProvider) {
-        super(viewProvider, NuXmvLanguage.INSTANCE);
+        super(viewProvider, NuXmv.INSTANCE);
     }
 
     @NotNull
@@ -21,6 +21,6 @@ public class NuXmvPSIFileRoot extends PsiFileBase {
 
     @Override
     public String toString() {
-        return "LibSL File";
+        return "NuXmv File";
     }
 }

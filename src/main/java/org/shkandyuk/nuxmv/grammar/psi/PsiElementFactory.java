@@ -27,22 +27,29 @@ public class PsiElementFactory {
         }
 
         return switch (ruleElType.getRuleIndex()) {
-            case NuXmvParser.RULE_assign -> new NuXmvAssign(node);
+            case NuXmvParser.RULE_root -> new NuXmvRoot(node);
             case NuXmvParser.RULE_module -> new NuXmvModule(node);
-            case NuXmvParser.RULE_andExpr -> new NuXmvAndExpr(node);
-            case NuXmvParser.RULE_expr -> new NuXmvExpr(node);
-            case NuXmvParser.RULE_nextAssign -> new NuXmvNextAssign(node);
-            case NuXmvParser.RULE_condition -> new NuXmvCondition(node);
-            case NuXmvParser.RULE_equalityExpr -> new NuXmvEqualityExpr(node);
-            case NuXmvParser.RULE_assignList -> new NuXmvAssignList(node);
+            case NuXmvParser.RULE_moduleBody -> new NuXmvNextAssign(node);
+            case NuXmvParser.RULE_assignment -> new NuXmvAssign(node);
+            case NuXmvParser.RULE_assign_statment -> new NuXmvAssignStatment(node);
+            case NuXmvParser.RULE_spec -> new NuXmvSpec(node);
+            case NuXmvParser.RULE_type -> new NuXmvType(node);
+            case NuXmvParser.RULE_expression -> new NuXmvExpression(node);
+            case NuXmvParser.RULE_expressions -> new NuXmvExpressions(node);
+            case NuXmvParser.RULE_value -> new NuXmvValue(node);
+            case NuXmvParser.RULE_value_list -> new NuXmvValueList(node);
+            case NuXmvParser.RULE_varDeclaration -> new NuXmvValDeclaration(node);
+            case NuXmvParser.RULE_case -> new NuXmvCase(node);
+            case NuXmvParser.RULE_case_statment -> new NuXmvCaseStatment(node);
             case NuXmvParser.RULE_init -> new NuXmvInit(node);
-            case NuXmvParser.RULE_initAssign -> new NuXmvInitAssign(node);
-            case NuXmvParser.RULE_orExpr -> new NuXmvOrExpr(node);
-            case NuXmvParser.RULE_invarspec -> new NuXmvInvarspec(node);
-            case NuXmvParser.RULE_ivar -> new NuXmvIvar(node);
-            case NuXmvParser.RULE_primaryExpr -> new NuXmvPrimaryExpr(node);
-            case NuXmvParser.RULE_relationalExpr -> new NuXmvRelationalExpr(node);
-            case NuXmvParser.RULE_trans -> new NuXmvTrans(node);
+            case NuXmvParser.RULE_bit_ops -> new NuXmvBitOperations(node);
+            case NuXmvParser.RULE_variables_declarations -> new NuXmvVariablesDeclarationList(node);
+            case NuXmvParser.RULE_unar_ops -> new NuXmvUnarOperation(node);
+            case NuXmvParser.RULE_next_statement -> new NuXmvNextStatement(node);
+            case NuXmvParser.RULE_next -> new NuXmvNext(node);
+            case NuXmvParser.RULE_init_statement -> new NuXmvInitStatement(node);
+            case NuXmvParser.RULE_spec_operators -> new NuXmvSpecOperators(node);
+
             default -> {
                 LOG.info("default node " + node);
                 yield new ASTWrapperPsiElement(node);

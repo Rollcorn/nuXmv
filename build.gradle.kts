@@ -1,62 +1,68 @@
+fun properties(key: String) = providers.gradleProperty(key)
+fun environment(key: String) = providers.environmentVariable(key)
+
 plugins {
-    id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.8.21"
-    id("org.jetbrains.intellij") version "1.17.1"
-    id("org.jetbrains.grammarkit") version "2022.3.2"
+    java
+    alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
+    alias(libs.plugins.kover) // Gradle Kover Plugin
     antlr
 }
-sourceSets["main"].java.srcDirs("src/main/gen")
 
-group = "com.shkanduik.nuxmv"
-version = "1.0-SNAPSHOT"
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
 
 repositories {
     mavenCentral()
 }
 
+
+dependencies {
+    antlr("org.antlr:antlr4:4.13.1")
+    implementation("org.antlr:antlr4-intellij-adaptor:0.1")
+}
+
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    version.set("2022.2.5")
-    type.set("IC") // Target IDE Platform
+    pluginName = properties("pluginName")
+    version = properties("platformVersion")
+    type = properties("platformType")
 
-    plugins.set(listOf(/* Plugin Dependencies */))
+    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
+    plugins = properties("platformPlugins").map { it.split(',').map(String::trim).filter(String::isNotEmpty) }
 }
 
-dependencies {
-//    implementation(libs.annotations)
-    antlr("org.antlr:antlr4:4.13.1")
-//    implementation("org.antlr:antlr4-intellij-adaptor:0.1")
-//    compile("org.antlr:antlr4-intellij-adaptor:0.1")
-//    implementation("org.antlr:antlr4-runtime:4.12.0") // используйте актуальную версию
-    implementation("org.antlr:antlr4-intellij-adaptor:0.1")
 
-//    implementation("org.antlr:antlr4-idea-plugin:0.1") // укажите версию плагина IDEA
+koverReport {
+    defaults {
+        xml {
+            onCheck = true
+        }
+    }
+}
 
+sourceSets.configureEach {
+    val generateGrammarSource = tasks.named(getTaskName("generate", "GrammarSource"))
+    java.srcDir(generateGrammarSource.map { files() })
 }
 
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "17"
-        targetCompatibility = "17"
+        options.compilerArgs.add("--enable-preview")
     }
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
+
+    withType<JavaExec> {
+        jvmArgs("--enable-preview")
+    }
+
+    wrapper {
+        gradleVersion = properties("gradleVersion").get()
     }
 
     patchPluginXml {
-        sinceBuild.set("222")
-        untilBuild.set("232.*")
-    }
-
-    signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
-    }
-
-    publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
     }
 }
