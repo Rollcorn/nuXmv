@@ -26,7 +26,7 @@ Plugin for [NuXmv](https://nuxmv.fbk.eu/) supporting.
 
 - Using the IDE built-in plugin system:
   
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "LibSL Support"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "NuXmv"</kbd> >
   <kbd>Install</kbd>
   
 - Manually:
