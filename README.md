@@ -1,8 +1,8 @@
 # NuXmv Support Plugin
 
-![Build](https://nuxmv.fbk.eu/theme/NuXMV.png)
-[!Version](0.0.1)
-[![Downloads]()]()
+
+**Version**: 0.0.1
+
 
 ## ToDo list
 ### Project structure
