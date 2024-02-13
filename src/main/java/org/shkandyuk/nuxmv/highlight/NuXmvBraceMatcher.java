@@ -6,7 +6,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvLexer;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvLexer;
 
 import static org.shkandyuk.nuxmv.NuXmvParserDefinition.tokens;
 

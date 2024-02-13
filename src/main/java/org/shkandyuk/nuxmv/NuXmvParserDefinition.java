@@ -23,15 +23,15 @@ import org.antlr.intellij.adaptor.psi.ANTLRPsiNode;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.jetbrains.annotations.NotNull;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvLexer;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvParser;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvLexer;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvParser;
 import org.shkandyuk.nuxmv.grammar.psi.NuXmvPSIFileRoot;
 import org.shkandyuk.nuxmv.grammar.psi.PsiElementFactory;
 
 import java.util.List;
 
 public class NuXmvParserDefinition implements ParserDefinition {
-    public static final Logger LOG = Logger.getInstance("ParserDef");
+//    public static final Logger LOG = Logger.getInstance("ParserDef");
 
     public static final IFileElementType FILE = new IFileElementType(NuXmv.INSTANCE);
 

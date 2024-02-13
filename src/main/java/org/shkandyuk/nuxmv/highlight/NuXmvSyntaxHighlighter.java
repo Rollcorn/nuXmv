@@ -11,10 +11,9 @@ import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
 import org.jetbrains.annotations.NotNull;
 import org.shkandyuk.nuxmv.NuXmv;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvLexer;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvParser;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvLexer;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvParser;
 
-import static com.intellij.openapi.editor.DefaultLanguageHighlighterColors.BLOCK_COMMENT;
 import static com.intellij.openapi.editor.DefaultLanguageHighlighterColors.LINE_COMMENT;
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
@@ -77,11 +76,11 @@ public class NuXmvSyntaxHighlighter implements SyntaxHighlighter {
                     NuXmvLexer.OP_AX | NuXmvLexer.OP_AG | NuXmvLexer.OP_AF
                     | NuXmvLexer.OP_BU | NuXmvLexer.OP_EBF | NuXmvLexer.OP_EBG
                     | NuXmvLexer.OP_ABF | NuXmvLexer.OP_ABG
-                    | NuXmvLexer.OP_E | NuXmvLexer.OP_F | NuXmvLexer.OP_O
-                    | NuXmvLexer.OP_G | NuXmvLexer.OP_U | NuXmvLexer.OP_H
-                    | NuXmvLexer.OP_X | NuXmvLexer.OP_Y | NuXmvLexer.OP_Z
-                    | NuXmvLexer.OP_A | NuXmvLexer.OP_U | NuXmvLexer.OP_S
-                    | NuXmvLexer.OP_V | NuXmvLexer.OP_T:
+                    | NuXmvLexer.OP_E   | NuXmvLexer.OP_F | NuXmvLexer.OP_O
+                    | NuXmvLexer.OP_G   | NuXmvLexer.OP_U | NuXmvLexer.OP_H
+                    | NuXmvLexer.OP_X   | NuXmvLexer.OP_Y | NuXmvLexer.OP_Z
+                    | NuXmvLexer.OP_A   | NuXmvLexer.OP_U | NuXmvLexer.OP_S
+                    | NuXmvLexer.OP_V   | NuXmvLexer.OP_T:
             case NuXmvLexer.STATE_ASSIGN:
             case NuXmvLexer.MINUS_ARROW:
             case NuXmvLexer.ASSIGN_OP:

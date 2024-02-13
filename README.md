@@ -10,9 +10,9 @@
 - [ ] Release first version on Plugin Market
 ### Basic features
 - [x] Implement Lexer for NuXmv main constructions [here]()
-- [ ] Implement Parser for NuXmv main constructions [here]()
+- [x] Implement Parser for NuXmv main constructions [here]()
     - [x] Comon constructions
-    - [ ] Implement handle of 'SPEC' module operations 
+    - [x] Implement handle of 'SPEC' module operations 
 - [x] Basic highlighter
 - [ ] Find Usages
 - [ ] Completion

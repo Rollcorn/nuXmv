@@ -102,6 +102,7 @@ OP_XNOR : 'xnor';
 OP_AND : '&';
 OP_OR : '|';
 EXCLAMATION : '!' ;
+DOT : '.' ;
 
 //Bin operators
 PLUS : '+' ;
@@ -111,11 +112,11 @@ L_ARROW : '<' ;
 R_ARROW : '>' ;
 ASTERISK : '*' ;
 SLASH : '/' ;
+EXCLAMATION_EQ : '!=' ;
 
 
 // Names
-IDENTIFICATOR : [a-zA-Z_] [a-zA-Z_0-9]*;
-
+IDENTIFICATOR : [a-zA-Z_-] [a-zA-Z_0-9-]*;
 // Operators
 ASSIGN_OP : ':=';
 STATE_ASSIGN: '=';

@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import org.antlr.intellij.adaptor.lexer.RuleIElementType;
 import org.antlr.intellij.adaptor.lexer.TokenIElementType;
-import org.shkandyuk.nuxmv.grammar.parser.NuXmvParser;
+import org.shkandyuk.nuxmv.grammar.antlr.NuXmvParser;
 import org.shkandyuk.nuxmv.grammar.psi.rules.*;
 
 public class PsiElementFactory {
