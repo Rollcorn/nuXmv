@@ -64,6 +64,8 @@ BI_MIN : 'min';
 T_ARRAY : 'array';
 T_OF : 'of';
 T_BOOLEAN : 'boolean';
+T_TRUE : 'TRUE';
+T_FALSE : 'FALSE';
 T_INTEGER : 'integer';
 T_REAL : 'real';
 T_WORD : 'word';

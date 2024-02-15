@@ -27,8 +27,10 @@ public class NuXmvSyntaxHighlighter implements SyntaxHighlighter {
             createTextAttributesKey("NUXMV_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey BRACKETS =
             createTextAttributesKey("NUXMV_NUMBER", DefaultLanguageHighlighterColors.BRACKETS);
+    public static final TextAttributesKey OPERATOR =
+            createTextAttributesKey("NUXMV_OPERATOR", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey OPERATION =
-            createTextAttributesKey("NUXMV_NUMBER", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+            createTextAttributesKey("NUXMV_OPERATION_SIGN", DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey COMMENT =
             createTextAttributesKey("NUXMV_COMMENT", LINE_COMMENT);
         public static final TextAttributesKey BLOCK_COMMENT =
@@ -52,7 +54,7 @@ public class NuXmvSyntaxHighlighter implements SyntaxHighlighter {
 
     @NotNull
     @Override
-    public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
+    public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
         if (!(tokenType instanceof TokenIElementType)) return EMPTY_KEYS;
         TokenIElementType myType = (TokenIElementType) tokenType;
         int ttype = myType.getANTLRTokenType();
@@ -68,10 +70,21 @@ public class NuXmvSyntaxHighlighter implements SyntaxHighlighter {
             case NuXmvLexer.OP_NEXT:
             case NuXmvLexer.OP_MOD:
             case NuXmvLexer.INVARSPEC:
+            case NuXmvLexer.SPEC:
+            case NuXmvLexer.TRANS:
+            case NuXmvLexer.LTLSPEC:
+            case NuXmvLexer.PSLSPEC:
+            case NuXmvLexer.ISA:
+            case NuXmvLexer.CTLSPEC:
+            case NuXmvLexer.CTLWFF:
+            case NuXmvLexer.ESAC:
             case NuXmvLexer.INVAR:
+            case NuXmvLexer.ASSIGN:
+            case NuXmvLexer.T_TRUE:
+            case NuXmvLexer.T_FALSE:
+            case NuXmvLexer.DEFINE:
                 attrKey = KEYWORD;
                 break;
-
             case NuXmvLexer.OP_EX | NuXmvLexer.OP_EG | NuXmvLexer.OP_EF |
                     NuXmvLexer.OP_AX | NuXmvLexer.OP_AG | NuXmvLexer.OP_AF
                     | NuXmvLexer.OP_BU | NuXmvLexer.OP_EBF | NuXmvLexer.OP_EBG
@@ -81,34 +94,29 @@ public class NuXmvSyntaxHighlighter implements SyntaxHighlighter {
                     | NuXmvLexer.OP_X   | NuXmvLexer.OP_Y | NuXmvLexer.OP_Z
                     | NuXmvLexer.OP_A   | NuXmvLexer.OP_U | NuXmvLexer.OP_S
                     | NuXmvLexer.OP_V   | NuXmvLexer.OP_T:
+                attrKey = OPERATOR;
+                break;
             case NuXmvLexer.STATE_ASSIGN:
             case NuXmvLexer.MINUS_ARROW:
             case NuXmvLexer.ASSIGN_OP:
-            case NuXmvLexer.ASSIGN:
                 attrKey = OPERATION;
                 break;
-
             case NuXmvLexer.L_BRACE | NuXmvLexer.R_BRACE
                     | NuXmvLexer.L_BRACKET | NuXmvLexer.R_BRACKET:
                 attrKey = BRACKETS;
                 break;
-
             case NuXmvLexer.IDENTIFICATOR:
                 attrKey = ID;
                 break;
-
             case NuXmvLexer.COMMENT:
                 attrKey = LINE_COMMENT;
                 break;
-
             case NuXmvLexer.LINE_COMMENT:
                 attrKey = BLOCK_COMMENT;
                 break;
-
             case NuXmvLexer.BAD_CHARACTER:
                 attrKey = BAD_CHARACTER;
                 break;
-
             default:
                 return EMPTY_KEYS;
         }

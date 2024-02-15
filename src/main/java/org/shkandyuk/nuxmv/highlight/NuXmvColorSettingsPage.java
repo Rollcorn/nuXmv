@@ -21,7 +21,10 @@ public class NuXmvColorSettingsPage implements ColorSettingsPage {
             new AttributesDescriptor("Keywords", NuXmvSyntaxHighlighter.KEYWORD),
             new AttributesDescriptor("Brackets", NuXmvSyntaxHighlighter.BRACKETS),
             new AttributesDescriptor("Operations", NuXmvSyntaxHighlighter.OPERATION),
-            new AttributesDescriptor("Comments", NuXmvSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("Line comments", NuXmvSyntaxHighlighter.COMMENT),
+            new AttributesDescriptor("Operators", NuXmvSyntaxHighlighter.OPERATOR),
+            new AttributesDescriptor("Block comments", NuXmvSyntaxHighlighter.BLOCK_COMMENT),
+
     };
 
     @Override

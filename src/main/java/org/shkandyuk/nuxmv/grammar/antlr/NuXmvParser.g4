@@ -95,6 +95,6 @@ value_list: value
     | value COMMA value_list;
 
 value:
-//    unar_ops value |
+    T_TRUE | T_FALSE |
     IDENTIFICATOR |
     INTEGER;
